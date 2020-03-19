@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+void An(int n, int i)
+{
+	if(i > n) return;
+	if(i % 2){
+		cout << "sin(" << i;
+		if(i != n) cout << "-";
+		An(n, i+1);
+		cout << ")";
+	}
+	else{
+		cout << "sin(" << i;
+		if(i != n) cout << "+";
+		An(n, i+1);
+		cout << ")";
+	}
+}
+
+void Sn(int n, int i)
+{
+	if(n < 1) return;
+	// Sn=(...(A1+n)A2+n-1)A3+...+2)An+1
+	if(i != 1) cout << "(";
+	Sn(n-1, i+1);
+	An(n, 1);
+	cout << "+" << i;
+	if( i != 1) cout << ")";
+} 
+
+int main()
+{
+	int n;
+	cin >> n;
+	Sn(n, 1);
+	return 0;
+}
