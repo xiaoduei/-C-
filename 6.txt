@@ -1,0 +1,23 @@
+// Z字形变换
+
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        vector<string> v(min(numRows, int(s.size())));
+        if(numRows == 1) return s;
+        int row = 0;
+        string ret = "";
+        bool flag = false;
+        //for_each()
+        for(char c: s){
+            if(row == 0 || row == numRows-1)
+                flag = !flag;
+            v[row].push_back(c);
+            row += flag ? 1 : -1;
+        }
+        for(string str : v){
+            ret += str;
+        }
+        return ret;
+    }
+};
